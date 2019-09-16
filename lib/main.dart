@@ -10,19 +10,32 @@ class MeuApp extends StatelessWidget {
 
   final chromeSafariBrowser = new ChromeSafariBrowser(new InAppBrowser());
 
+  void open() {
+    chromeSafariBrowser.open(url, options: {
+      "showTitle": false,
+      "enableUrlBarHiding": true,
+      "instantAppsEnabled": true
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    chromeSafariBrowser.open(url, options: {
-      "showTitle": false,
-      "enableUrlBarHiding":true,
-      "instantAppsEnabled":true
-    });
-
+    open();
     return MaterialApp(
-      home: Container(
-        color: Colors.black,
+      home: Scaffold(
+        body: Container(
+          color: Color.fromRGBO(12, 69, 114, 1),
+          child: Center(
+            child: FlatButton(
+              child: Text(
+                "Abrir aplicativo",
+                style: TextStyle(
+                    fontSize: 32, fontFamily: "sansserif", color: Colors.white),
+              ),
+              onPressed: open,
+            ),
+          ),
+        ),
       ),
     );
   }
